@@ -69,18 +69,18 @@ document.querySelector('.upload').addEventListener('change', e => {
 
 /**
  * 目标3：修改信息
- *  2.1 点击“提交”按钮，收集表单信息
- *  2.2 发送请求，提交到服务器
+ *  3.1 点击“提交”按钮，收集表单信息
+ *  3.2 发送请求，提交到服务器
  * */
 
 document.querySelector('.submit').addEventListener('click', () => {
-    // 2.1 点击“提交”按钮，收集表单信息
+    // 3.1 点击“提交”按钮，收集表单信息
     // form-serialize获取表单信息：(1)在form标签中 （2）表单有name属性
     const userForm = document.querySelector('.user-form')
     // 收集表单信息
     const userObj = serialize(userForm, { hash: true, empty: true })
     // console.log(userObj);
-    // 2.2 发送请求，提交到服务器
+    // 3.2 发送请求，提交到服务器
     // 提交给服务器的参数gender是数字类型，把userObj里字符串类型的gender转换成数字类型
     userObj.gender = +userObj.gender
     console.log(userObj);
@@ -93,7 +93,17 @@ document.querySelector('.submit').addEventListener('click', () => {
             creator
         }
     }).then(result => {
-        console.log(result);
+        // console.log(result);
+        // 4.修改个人信息成功后，toast提示框
+        // 创建toast提示框对象
+        // 获取toast提示框css选择器
+        const toastDom = document.querySelector('.my-toast')
+        // 使用bootstrap的toast样式
+        const toast = new bootstrap.Toast(toastDom)
+
+        // 显示toast提示框
+        toast.show()
+        
     })
 
 })
